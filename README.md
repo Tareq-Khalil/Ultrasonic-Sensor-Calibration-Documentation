@@ -75,10 +75,65 @@ Use least-squares linear regression mapping measured -> real (i.e., fit real = a
 
 **Result :** Maximum absolute error reduced from **3.40 cm** to **≈0.23 cm** across the tested range.
 
+
+
+## MQ-135 Gas Sensor — Calibration
+### Group 10345 — [ORBIT]
+---
+
+### 1. Purpose
+> This appendix documents the calibration procedure, raw data, calculations, software implementation, and limitations for the MQ-135 gas sensor used to monitor relative air-quality in the project.
+---
+This calibration provides a reproducible baseline (R₀) determination in clean air and documents how to convert raw ADC readings to normalized resistance (Rₛ/R₀).
+---
+
+### 2. Equipment & Conditions
+- Sensor: *MQ-135*
+- Controller: **Arduino / Raspberry Pi** (specify in your report)  
+- Supply voltage: 5V 
+- Environment: well-ventilated indoor area for clean-air baseline; record temperature & relative humidity during calibration
+- Burn-in time: **48 hours** 
+- Samples per measurement: **50–100 readings** (to average)
+
+---
+
+### 3. Warm-up
+> The MQ-135 was powered for 48 hours prior to calibration to ensure sensor stability and repeatability of readings.
+
+---
+From MQ-135 typical clean-air ratio from datasheet:
+
+\[ \frac{R_s}{R_0} \approx 3.6 \quad \text{(clean air)} \]
+
+Therefore:
+
+\[ R_0 = \frac{R_s}{3.6} \]
+
+Using the example R_s ≈ 41.1 kΩ:
+
+\[ R_0 \approx 41{,}100 / 3.6 \approx 11{,}420\ \Omega \]
+
+
+---
+
+\[ ratio = \frac{R_s}{R_0} \]
+
+This ratio is the calibrated quantity plotted for air-quality events.
+
+---
+### 4. Solve for PPM:
+
+\[ \text{PPM} = 10^{m \cdot \log(R_s/R_0) + c} \]
+
+---
+
+### 5. Validation
+| Test | Condition | Avg R_s/R_0 | Comment |
+|---:|---|---:|---|
+| 1 | Clean air | 3.6 | Baseline |
+| 2 | Near kitchen smoke | 0.9 | Rapid drop indicates VOCs |
+
 ---
 
 | **Team 10345** |
 |---------------|
-
-
-
