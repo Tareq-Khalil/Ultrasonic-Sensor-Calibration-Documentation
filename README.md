@@ -28,7 +28,6 @@ Short statement of purpose (1–2 lines):
 ---
 
 ## 4. Raw Data (example template)
-Replace the example values with your measured averages.
 
 | Real Distance (cm) | Avg Measured (cm) | Error (Measured − Real) (cm) |
 | 10 | 11.2 | +1.20 |
